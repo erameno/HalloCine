@@ -47,7 +47,6 @@ const MovieList = () => {
                     setLoading(false);
                 }
             } else {
-                // Fetch movies based on category if searchTerm is empty
                 const fetchMovies = async () => {
                     setLoading(true);
                     try {
@@ -114,7 +113,7 @@ const MovieList = () => {
                     />
                 ))}
             </div>
-            <div>
+            <div className={styles.pagination}>
                 <button onClick={handlePreviousPage} disabled={page === 1}>Précédent</button>
                 <button onClick={handleNextPage}>Suivant</button>
             </div>

@@ -13,7 +13,7 @@ function MovieDetail() {
     const [movie, setMovie] = useState(null);
     const [actors, setActors] = useState([]);
     const [similarMovies, setSimilarMovies] = useState([]);
-    const { addToWishlist, wishlist } = useContext(Wishlist);
+    const { addToWishlist, wishlist, removeFromWishlist } = useContext(Wishlist);
 
     const addToWishlistWithCheck = (movie) => {
         const movieInWishlist = wishlist.find(item => item.id === movie.id);
@@ -70,7 +70,14 @@ function MovieDetail() {
             <p>{movie.overview}</p>
             <p>Date de sortie: {movie.release_date}</p>
             <p>Note moyenne: {movie.vote_average}</p>
-            <button onClick={() => addToWishlistWithCheck(movie)}>Ajouter à la Wishlist</button>
+            { wishlist.find(item => item.id === movie.id) ? (
+                <button onClick={() => removeFromWishlist(movie.id)}>Ajouter à la Wishlist</button>
+                
+            ) : 
+                (
+                    <button onClick={() => addToWishlistWithCheck(movie)}>Retirer de la Wishlist</button>
+                )
+            }
             <h2>Acteurs Principaux</h2>
             <div className={styles.movieList}>
                 {actors.map(actor => (
