@@ -13,7 +13,9 @@ const WishlistProvider = ({ children }) => {
     }, [wishlist]);
 
     const addToWishlist = (movie) => {
+        
         setWishlist((prevItems) => [...prevItems, movie]);
+        console.log(wishlist)
     };
 
     const removeFromWishlist = (productId) => {

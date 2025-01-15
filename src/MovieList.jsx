@@ -60,23 +60,28 @@ const MovieList = () => {
     }
 
     return (
-        <div>
+        <div className={styles.body}>
             <h1>Liste des Films</h1>
-            <div>
-                <button onClick={() => setCategory('now_playing')}>Now Playing</button>
-                <button onClick={() => setCategory('popular')}>Popular</button>
-                <button onClick={() => setCategory('top_rated')}>Top Rated</button>
-                <button onClick={() => setCategory('upcoming')}>Upcoming</button>
+            <div className={styles.filterList}>
+              <button className={styles.filterButton} onClick={() => setCategory('popular')} 
+                style={{ backgroundColor: category === 'popular' ? '#ff5500' : 'white' }}>Popular</button>
+              <button className={styles.filterButton} onClick={() => setCategory('now_playing')}
+                style={{ backgroundColor: category === 'now_playing' ? '#ff5500' : 'white' }}>Now Playing</button>
+              <button className={styles.filterButton} onClick={() => setCategory('top_rated')}
+                style={{ backgroundColor: category === 'top_rated' ? '#ff5500' : 'white' }}>Top Rated</button>
+              <button className={styles.filterButton} onClick={() => setCategory('upcoming')}
+                style={{ backgroundColor: category === 'upcoming' ? '#ff5500' : 'white' }}>Upcoming</button>
+              
+              <form onSubmit={handleSearch}>
+                  <input
+                      type="text"
+                      placeholder="Rechercher un film"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                  <button className={styles.filterButton} type="submit">Rechercher</button>
+              </form>
             </div>
-            <form onSubmit={handleSearch}>
-                <input
-                    type="text"
-                    placeholder="Rechercher un film"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <button type="submit">Rechercher</button>
-            </form>
             <div className={styles.movieList}>
                 {movies.map(movie => (
                     <div className={styles.movieCard} key={movie.id}>
