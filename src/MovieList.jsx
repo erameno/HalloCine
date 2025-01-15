@@ -77,10 +77,6 @@ const MovieList = () => {
         setPage(page + 1);
     };
 
-    if (loading) {
-        return <p>Chargement en cours…</p>;
-    }
-
     return (
         <div className={styles.body}>
             <h1>Liste des Films</h1>
@@ -101,6 +97,7 @@ const MovieList = () => {
                     className={styles.searchBar}
                 />
             </div>
+            {loading && <p>Chargement en cours…</p>}
             <div className={styles.movieList}>
                 {movies.map(movie => (
                     <MovieCard
